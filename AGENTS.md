@@ -64,6 +64,12 @@ Expected vars (based on current code/config):
 ## Conventions
 
 - TypeScript is `strict` (`tsconfig.json`).
+- Prefer **inferred return types**: do **not** add explicit return type annotations unless required (e.g. public API boundaries, overloads, or to resolve inference issues).
 - ESLint config is TanStack + Convex (`eslint.config.mjs`).
+- React hooks must be imported directly (e.g. `import { useState, useEffect } from "react"`), and must NOT be used via the `React.useState` / `React.useEffect` namespace style.
+- Prefer **arrow functions** over `function` declarations everywhere, **except** when defining TanStack Router route definitions (those can use `function` when it reads better).
+- TanStack Form: prefer the render-props children pattern for `<form.Field />` (e.g. `<form.Field name="email">{(field) => ...}</form.Field>`) instead of passing a `children={(field) => ...}` prop.
 - Prefer keeping generated files untouched: `convex/_generated/` and `src/routeTree.gen.ts`.
 - If you hit unfamiliar/changed APIs (latest library changes), use Context7 to fetch up-to-date docs/examples for the specific library before implementing.
+- When passing Zod validation into server utilities (e.g. `inputValidator`), pass the **Zod schema directly** (no callback wrapper function).
+- For email validation in Zod v4, prefer the shortest form: `z.email()`.
