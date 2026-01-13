@@ -1,0 +1,9 @@
+node_modules
+dist
+.output
+.tanstack
+convex/_generated
+src/routeTree.gen.ts
+bun.lock
+.DS_Store
+
